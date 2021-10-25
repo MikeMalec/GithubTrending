@@ -51,7 +51,8 @@ android {
 }
 
 dependencies {
-
+    implementation(project(Project.Modules.BUSINESS))
+    implementation(project(Project.Modules.FRAMEWORK))
     implementation(Project.Dependencies.ANDROIDX_CORE)
     implementation(Project.Dependencies.APPCOMPAT)
     implementation(Project.Dependencies.MATERIAL)

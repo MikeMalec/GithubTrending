@@ -4,6 +4,11 @@ object Project {
         const val COMPOSE_VERSION = "1.0.1"
     }
 
+    object Modules {
+        const val BUSINESS = ":business"
+        const val FRAMEWORK = ":framework"
+    }
+
     object Dependencies {
         const val ANDROIDX_CORE = "androidx.core:core-ktx:1.6.0"
         const val APPCOMPAT = "androidx.appcompat:appcompat:1.3.1"

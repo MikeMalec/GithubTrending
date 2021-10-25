@@ -1,5 +1,12 @@
 package com.example.githubtrending.di
 
+import com.example.business.data.network.RepoNetworkDataSource
+import com.example.business.data.network.RepoNetworkDataSourceImpl
+import com.example.business.data.network.RepoNetworkService
+import com.example.framework.data.network.repo.RepoApi
+import com.example.framework.data.network.repo.RepoNetworkServiceImpl
+import com.example.framework.data.network.repo.RepoNetworkMapper
+import com.example.framework.utils.Constants
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -17,5 +24,33 @@ object NetworkModule {
     fun provideRetrofit(): Retrofit.Builder {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .baseUrl(Constants.BASE_API_URL)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepoApi(retrofit: Retrofit.Builder): RepoApi {
+        return retrofit.build().create(RepoApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepoNetworkMapper(): RepoNetworkMapper {
+        return RepoNetworkMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepoNetworkService(
+        repoApi: RepoApi,
+        repoNetworkMapper: RepoNetworkMapper
+    ): RepoNetworkService {
+        return RepoNetworkServiceImpl(repoApi = repoApi, repoNetworkMapper = repoNetworkMapper)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepoNetworkDataSource(repoNetworkService: RepoNetworkService): RepoNetworkDataSource {
+        return RepoNetworkDataSourceImpl(repoNetworkService = repoNetworkService)
     }
 }

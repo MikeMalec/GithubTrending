@@ -34,7 +34,7 @@ android {
         useIR = true
     }
     buildFeatures {
-        compose =  true
+        compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Project.Android.COMPOSE_VERSION
@@ -46,7 +46,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(Project.Modules.BUSINESS))
     implementation(Project.Dependencies.ANDROIDX_CORE)
     implementation(Project.Dependencies.APPCOMPAT)
     implementation(Project.Dependencies.MATERIAL)
@@ -60,4 +60,12 @@ dependencies {
     androidTestImplementation(Project.Dependencies.Tests.UITests.ESPRESSO)
     androidTestImplementation(Project.Dependencies.Tests.UITests.UI_JUNIT)
     debugImplementation(Project.Dependencies.Tests.UITests.COMPOSE_UI_TOOLING)
+
+    //Retrofit
+    implementation(Project.Dependencies.RETROFIT)
+    implementation(Project.Dependencies.RETROFIT_CONVERTER)
+
+    //Room
+    implementation(Project.Dependencies.ROOM)
+    implementation(Project.Dependencies.ROOM_COMPILER)
 }

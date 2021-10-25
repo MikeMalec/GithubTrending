@@ -1,4 +1,4 @@
-package com.example.business.data.network
+package com.example.business.data.network.repo
 
 import com.example.business.domain.Repo
 

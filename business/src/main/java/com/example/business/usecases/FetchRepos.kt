@@ -1,6 +1,6 @@
 package com.example.business.usecases
 
-import com.example.business.data.network.RepoNetworkDataSource
+import com.example.business.data.network.repo.RepoNetworkDataSource
 import com.example.business.domain.Repo
 import com.example.business.domain.utils.Resource
 import com.example.business.domain.utils.Resource.Loading

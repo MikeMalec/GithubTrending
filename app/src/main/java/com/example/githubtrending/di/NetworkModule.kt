@@ -1,9 +1,9 @@
 package com.example.githubtrending.di
 
-import com.example.business.data.network.RepoNetworkDataSource
+import com.example.business.data.network.repo.RepoNetworkDataSource
 import com.example.business.data.network.RepoNetworkDataSourceImpl
 import com.example.business.data.network.RepoNetworkService
-import com.example.framework.data.network.repo.RepoApi
+import com.example.framework.data.network.GithubTrendingApi
 import com.example.framework.data.network.repo.RepoNetworkServiceImpl
 import com.example.framework.data.network.repo.RepoNetworkMapper
 import com.example.framework.utils.Constants
@@ -29,8 +29,8 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRepoApi(retrofit: Retrofit.Builder): RepoApi {
-        return retrofit.build().create(RepoApi::class.java)
+    fun provideRepoApi(retrofit: Retrofit.Builder): GithubTrendingApi {
+        return retrofit.build().create(GithubTrendingApi::class.java)
     }
 
     @Singleton

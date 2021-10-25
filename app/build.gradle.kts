@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -20,7 +22,7 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -37,7 +39,7 @@ android {
         useIR = true
     }
     buildFeatures {
-        compose =  true
+        compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Project.Android.COMPOSE_VERSION
@@ -63,4 +65,18 @@ dependencies {
     androidTestImplementation(Project.Dependencies.Tests.UITests.ESPRESSO)
     androidTestImplementation(Project.Dependencies.Tests.UITests.UI_JUNIT)
     debugImplementation(Project.Dependencies.Tests.UITests.COMPOSE_UI_TOOLING)
+
+    //Retrofit
+    implementation(Project.Dependencies.RETROFIT)
+    implementation(Project.Dependencies.RETROFIT_CONVERTER)
+
+    //Room
+    implementation(Project.Dependencies.ROOM)
+    implementation(Project.Dependencies.ROOM_COMPILER)
+
+    //dagger
+    implementation(Project.Dependencies.HILT_ANDROID)
+    kapt(Project.Dependencies.DAGGER_HILT_COMPILER)
+    implementation(Project.Dependencies.HILT_VIEW_MODEL_LIFECYCLE)
+    kapt(Project.Dependencies.HILT_COMPILER)
 }

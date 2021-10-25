@@ -1,4 +1,4 @@
-package com.example.githubtrending
+package com.example.githubtrending.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

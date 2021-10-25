@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "GithubTrending"
 include ':app'
+include ':business'
+include ':framework'

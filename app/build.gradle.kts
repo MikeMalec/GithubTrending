@@ -80,4 +80,12 @@ dependencies {
     kapt(Project.Dependencies.DAGGER_HILT_COMPILER)
     implementation(Project.Dependencies.HILT_VIEW_MODEL_LIFECYCLE)
     kapt(Project.Dependencies.HILT_COMPILER)
+
+    //Unit Tests
+    implementation(Project.Dependencies.Tests.UnitTests.CORE)
+    implementation(Project.Dependencies.Tests.UnitTests.JUNIT)
+    implementation(Project.Dependencies.Tests.UnitTests.ARCH_CORE)
+    implementation(Project.Dependencies.Tests.UnitTests.TRUTH)
+    implementation(Project.Dependencies.Tests.UnitTests.MOCKITO)
+    implementation(Project.Dependencies.Tests.UnitTests.COROUTINES)
 }

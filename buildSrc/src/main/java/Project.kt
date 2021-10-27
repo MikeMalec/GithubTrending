@@ -43,6 +43,11 @@ object Project {
         object Tests {
             object UnitTests {
                 const val JUNIT = "junit:junit:4.+"
+                const val CORE = "androidx.test:core:1.3.0"
+                const val ARCH_CORE = "android.arch.core:core-testing:1.0.0"
+                const val TRUTH = "com.google.truth:truth:1.0.1"
+                const val MOCKITO = "org.mockito:mockito-core:2.23.0"
+                const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1"
             }
 
             object UITests {

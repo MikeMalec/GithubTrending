@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up JDK
       - uses: actions/setup-java@v1.4.3
-      - name: Grant rights
-        run: chmod +x build.gradle
         with:
           java-version: 1.8
+      - name: Grant rights
+        run: chmod +x build.gradle
       - name: Unit Tests
         run: ./gradlew test
 
@@ -25,7 +25,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -37,11 +36,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ unit_tests, ui_test ]
     steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
+      - name: Checkout
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+      - uses: actions/setup-java@v1.4.3
+          with:
+            java-version: 1.8
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Upload APK

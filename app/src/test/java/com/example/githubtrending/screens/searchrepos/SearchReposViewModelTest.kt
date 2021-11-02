@@ -5,11 +5,11 @@ import com.example.business.domain.Period
 import com.example.business.usecases.FetchProgrammingLanguages
 import com.example.business.usecases.FetchRepos
 import com.example.githubtrending.CoroutineRule
+import com.example.githubtrending.data.TestRepoFactory
 import com.example.githubtrending.data.cache.repo.FakeRepoCacheDataSource
 import com.example.githubtrending.data.network.programminglanguages.FakeProgrammingLanguageNetworkDataSource
 import com.example.githubtrending.data.network.repo.FakeRepoNetworkDataSource
 import com.example.githubtrending.data.preferences.FakeAppPreferences
-import com.example.githubtrending.utils.TestRepoFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.google.common.truth.Truth.*
 import kotlinx.coroutines.test.runBlockingTest

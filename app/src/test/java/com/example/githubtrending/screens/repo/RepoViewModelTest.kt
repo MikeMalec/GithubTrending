@@ -6,9 +6,9 @@ import com.example.business.domain.Repo
 import com.example.business.usecases.DeleteRepo
 import com.example.business.usecases.SaveRepo
 import com.example.githubtrending.CoroutineRule
+import com.example.githubtrending.data.TestRepoFactory
 import com.example.githubtrending.data.cache.repo.FakeRepoCacheDataSource
 import com.example.githubtrending.screens.MainActivity
-import com.example.githubtrending.utils.TestRepoFactory
 import com.google.common.truth.Truth.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

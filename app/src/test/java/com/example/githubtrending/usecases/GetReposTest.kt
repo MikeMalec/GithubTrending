@@ -1,8 +1,8 @@
 package com.example.githubtrending.usecases
 
 import com.example.business.usecases.GetRepos
+import com.example.githubtrending.data.TestRepoFactory
 import com.example.githubtrending.data.cache.repo.FakeRepoCacheDataSource
-import com.example.githubtrending.utils.TestRepoFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runBlockingTest

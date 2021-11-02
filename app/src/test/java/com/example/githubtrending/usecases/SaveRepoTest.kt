@@ -2,8 +2,8 @@ package com.example.githubtrending.usecases
 
 import com.example.business.domain.utils.Resource
 import com.example.business.usecases.SaveRepo
+import com.example.githubtrending.data.TestRepoFactory
 import com.example.githubtrending.data.cache.repo.FakeRepoCacheDataSource
-import com.example.githubtrending.utils.TestRepoFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before

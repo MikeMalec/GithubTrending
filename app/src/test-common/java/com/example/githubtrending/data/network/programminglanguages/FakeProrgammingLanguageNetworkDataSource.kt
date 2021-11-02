@@ -5,7 +5,9 @@ import com.example.business.domain.ProgrammingLanguages
 
 class FakeProgrammingLanguageNetworkDataSource : ProgrammingLanguageNetworkDataSource {
 
-    var programmingLanguages: ProgrammingLanguages = ProgrammingLanguages(listOf())
+    var programmingLanguages: ProgrammingLanguages = ProgrammingLanguages().apply {
+        addAll(listOf("c,c++,kotlin,java,javascript,php"))
+    }
 
     var throwsException = false
 

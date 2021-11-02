@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RepoDao {
     @Insert
-    suspend fun saveRepo(repoCacheEntity: RepoCacheEntity): Long
+    fun saveRepo(repoCacheEntity: RepoCacheEntity): Long
 
     @Delete
-    suspend fun deleteRepo(repoCacheEntity: RepoCacheEntity)
+    fun deleteRepo(repoCacheEntity: RepoCacheEntity)
 
     @Query("SELECT * FROM repos")
     fun getRepos(): Flow<List<RepoCacheEntity>>

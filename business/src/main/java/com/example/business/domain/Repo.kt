@@ -3,6 +3,7 @@ package com.example.business.domain
 data class Repo(
     var cacheId: Long? = null,
     val author: String,
+    val name: String,
     val langColor: String,
     val description: String,
     val url: String,

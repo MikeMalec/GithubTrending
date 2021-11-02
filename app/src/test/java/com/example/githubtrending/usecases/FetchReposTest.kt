@@ -19,13 +19,14 @@ class FetchReposTest {
     @Before
     fun init() {
         fakeRepoNetworkDataSource = FakeRepoNetworkDataSource()
+        fakeRepoNetworkDataSource.daily.addAll(TestRepoFactory.createRepos(1..10))
         fetchRepos = FetchRepos(fakeRepoNetworkDataSource)
-        fakeRepoNetworkDataSource.repos.addAll(TestRepoFactory.createRepos(1..10, "kotlin"))
+        fakeRepoNetworkDataSource.daily.addAll(TestRepoFactory.createRepos(1..10, "kotlin"))
     }
 
     @Test
     fun `fetch repos confirm loading success emitted`() = runBlockingTest {
-        val results = fetchRepos.fetchRepos("daily", "kotlin").toList()
+        val results = fetchRepos.fetchRepos("daily", "c").toList()
         assertThat(results.first()).isInstanceOf(Resource.Loading::class.java)
         assertThat(results[1]).isInstanceOf(Resource.Success::class.java)
         (results[1] as Resource.Success).let {
@@ -36,7 +37,7 @@ class FetchReposTest {
     @Test
     fun `fetch repos throws error  confirm loading error emitted`() = runBlockingTest {
         fakeRepoNetworkDataSource.throwsError = true
-        val results = fetchRepos.fetchRepos("daily", "kotlin").toList()
+        val results = fetchRepos.fetchRepos("daily", "c").toList()
         assertThat(results.first()).isInstanceOf(Resource.Loading::class.java)
         assertThat(results[1]).isInstanceOf(Resource.Error::class.java)
     }

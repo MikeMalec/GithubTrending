@@ -6,6 +6,7 @@ class RepoNetworkMapper {
     fun toDomain(repoDao: RepoDao): Repo {
         return Repo(
             cacheId = null,
+            name = repoDao.name,
             author = repoDao.author,
             langColor = repoDao.langColor,
             description = repoDao.description,

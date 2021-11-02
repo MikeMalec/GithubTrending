@@ -5,4 +5,9 @@ object Constants {
     const val EN = "en"
     const val DB_NAME = "REPOS_DB"
     const val REPOS_TABLE = "repos"
+    const val IO_DISPATCHER = "IO_DISPATCHER"
+
+    object TestTags {
+        const val WELCOME_BTN = "WELCOME_BTN"
+    }
 }

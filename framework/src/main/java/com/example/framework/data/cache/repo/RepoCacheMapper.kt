@@ -6,6 +6,7 @@ class RepoCacheMapper {
     fun toDomain(repoCacheEntity: RepoCacheEntity): Repo {
         return Repo(
             cacheId = repoCacheEntity.cacheId,
+            name = repoCacheEntity.name,
             author = repoCacheEntity.author,
             langColor = repoCacheEntity.langColor,
             description = repoCacheEntity.description,
@@ -24,6 +25,7 @@ class RepoCacheMapper {
     fun fromDomain(repo: Repo): RepoCacheEntity {
         return RepoCacheEntity(
             cacheId = repo.cacheId,
+            name = repo.name,
             author = repo.author,
             langColor = repo.langColor,
             description = repo.description,

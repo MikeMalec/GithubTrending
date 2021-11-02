@@ -5,7 +5,9 @@ import com.example.business.domain.Repo
 
 class FakeRepoNetworkDataSource : RepoNetworkDataSource {
 
-    var repos = mutableListOf<Repo>()
+    var daily = mutableListOf<Repo>()
+    var weekly = mutableListOf<Repo>()
+    var monthly = mutableListOf<Repo>()
 
     var throwsError = false
     private fun checkError() {
@@ -14,6 +16,10 @@ class FakeRepoNetworkDataSource : RepoNetworkDataSource {
 
     override suspend fun getRepos(period: String, programmingLanguage: String): List<Repo> {
         checkError()
-        return repos.filter { it.language == programmingLanguage }
+        return when (period) {
+            "daily" -> daily.filter { it.language == programmingLanguage }
+            "weekly" -> weekly.filter { it.language == programmingLanguage }
+            else -> monthly.filter { it.language == programmingLanguage }
+        }
     }
 }

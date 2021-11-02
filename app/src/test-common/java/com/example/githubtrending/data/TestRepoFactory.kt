@@ -1,4 +1,4 @@
-package com.example.githubtrending.utils
+package com.example.githubtrending.data
 
 import com.example.business.domain.Repo
 
@@ -7,13 +7,14 @@ object TestRepoFactory {
         return amount.map {
             Repo(
                 cacheId = it.toLong(),
+                name = it.toString(),
                 author = "$it",
-                langColor = "$it",
+                langColor = "0xFFff5722",
                 description = "$it",
                 url = "$it",
                 stars = it,
                 forks = it,
-                language = "$it",
+                language = "$language",
                 avatar = "$it",
             )
         }

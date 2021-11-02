@@ -1,17 +1,19 @@
 package com.example.githubtrending.di
 
+import com.example.business.data.network.programminglanguage.ProgrammingLanguageNetworkDataSource
 import com.example.business.data.network.repo.RepoNetworkDataSource
-import com.example.business.data.network.RepoNetworkDataSourceImpl
-import com.example.business.data.network.RepoNetworkService
 import com.example.framework.data.network.GithubTrendingApi
+import com.example.framework.data.network.programminglanguage.ProgrammingLanguageNetworkDataSourceImpl
 import com.example.framework.data.network.repo.RepoNetworkServiceImpl
 import com.example.framework.data.network.repo.RepoNetworkMapper
 import com.example.framework.utils.Constants
+import com.example.githubtrending.utils.NetworkLogger
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -22,9 +24,13 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit.Builder {
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(NetworkLogger())
+            .build()
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .baseUrl(Constants.BASE_API_URL)
+            .client(okHttpClient)
     }
 
     @Singleton
@@ -42,15 +48,19 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideRepoNetworkService(
-        repoApi: RepoApi,
+        githubTrendingApi: GithubTrendingApi,
         repoNetworkMapper: RepoNetworkMapper
-    ): RepoNetworkService {
-        return RepoNetworkServiceImpl(repoApi = repoApi, repoNetworkMapper = repoNetworkMapper)
+    ): RepoNetworkDataSource {
+        return RepoNetworkServiceImpl(
+            api = githubTrendingApi,
+            repoNetworkMapper = repoNetworkMapper
+        )
     }
 
     @Singleton
     @Provides
-    fun provideRepoNetworkDataSource(repoNetworkService: RepoNetworkService): RepoNetworkDataSource {
-        return RepoNetworkDataSourceImpl(repoNetworkService = repoNetworkService)
+    fun provideProgrammingLanguageNetworkDataSource(api: GithubTrendingApi)
+            : ProgrammingLanguageNetworkDataSource {
+        return ProgrammingLanguageNetworkDataSourceImpl(api)
     }
 }

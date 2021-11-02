@@ -9,6 +9,7 @@ data class RepoCacheEntity(
     @PrimaryKey(autoGenerate = true)
     var cacheId: Long? = null,
     val author: String,
+    val name: String,
     val langColor: String,
     val description: String,
     val url: String,

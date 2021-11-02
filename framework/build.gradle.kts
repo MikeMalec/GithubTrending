@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("kotlin-kapt")
     id("kotlin-android")
 }
 
@@ -67,5 +68,9 @@ dependencies {
 
     //Room
     implementation(Project.Dependencies.ROOM)
-    implementation(Project.Dependencies.ROOM_COMPILER)
+    implementation(Project.Dependencies.ROOM_COROUTINES)
+    kapt(Project.Dependencies.ROOM_COMPILER)
+
+    //Datastore
+    implementation(Project.Dependencies.DataStore)
 }

@@ -15,7 +15,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.githubtrending.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -37,6 +37,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+    }
+    sourceSets {
+        getByName("androidTest").java.srcDirs("src/test-common/java")
+        getByName("test").java.srcDirs("src/test-common/java")
     }
     buildFeatures {
         compose = true
@@ -61,11 +65,11 @@ dependencies {
     implementation(Project.Dependencies.COMPOSE_TOOLING_PREVIEW)
     implementation(Project.Dependencies.ANDROIDX_LIFECYCLE)
     implementation(Project.Dependencies.COMPOSE_ACTIVITY)
-    testImplementation(Project.Dependencies.Tests.UnitTests.JUNIT)
-    androidTestImplementation(Project.Dependencies.Tests.UITests.ANDROIDX_JUNIT)
-    androidTestImplementation(Project.Dependencies.Tests.UITests.ESPRESSO)
-    androidTestImplementation(Project.Dependencies.Tests.UITests.UI_JUNIT)
-    debugImplementation(Project.Dependencies.Tests.UITests.COMPOSE_UI_TOOLING)
+
+
+    //Navigation
+    implementation(Project.Dependencies.NAVIGATION)
+    implementation(Project.Dependencies.NAVIGATION_ANIMATIONS)
 
     //Retrofit
     implementation(Project.Dependencies.RETROFIT)
@@ -73,10 +77,11 @@ dependencies {
 
     //Room
     implementation(Project.Dependencies.ROOM)
-    implementation(Project.Dependencies.ROOM_COMPILER)
+    kapt(Project.Dependencies.ROOM_COMPILER)
 
     //dagger
     implementation(Project.Dependencies.HILT_ANDROID)
+    implementation(Project.Dependencies.HILT_NAVIGATION)
     kapt(Project.Dependencies.DAGGER_HILT_COMPILER)
     implementation(Project.Dependencies.HILT_VIEW_MODEL_LIFECYCLE)
     kapt(Project.Dependencies.HILT_COMPILER)
@@ -88,4 +93,23 @@ dependencies {
     implementation(Project.Dependencies.Tests.UnitTests.TRUTH)
     implementation(Project.Dependencies.Tests.UnitTests.MOCKITO)
     implementation(Project.Dependencies.Tests.UnitTests.COROUTINES)
+    testImplementation(Project.Dependencies.Tests.UnitTests.JUNIT)
+
+    //UI Tests
+    androidTestImplementation(Project.Dependencies.Tests.UITests.ANDROIDX_JUNIT)
+
+    androidTestImplementation(Project.Dependencies.Tests.UITests.UI_JUNIT)
+
+    androidTestImplementation(Project.Dependencies.Tests.UITests.COMPOSE_MANIFEST)
+    debugImplementation(Project.Dependencies.Tests.UITests.COMPOSE_UI_TOOLING)
+
+    androidTestImplementation(Project.Dependencies.HILT_ANDROID_TEST)
+    kaptAndroidTest(Project.Dependencies.HILT_COMPILER)
+    androidTestImplementation(Project.Dependencies.Tests.UITests.RUNNER)
+
+    //Coil
+    implementation(Project.Dependencies.COIL)
+
+    //Datastore
+    implementation(Project.Dependencies.DataStore)
 }

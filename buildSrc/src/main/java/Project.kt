@@ -1,7 +1,7 @@
 object Project {
 
     object Android {
-        const val COMPOSE_VERSION = "1.0.1"
+        const val COMPOSE_VERSION = "1.0.4"
     }
 
     object Modules {
@@ -20,6 +20,13 @@ object Project {
         const val ANDROIDX_LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:1.3.1"
 
+        const val NAVIGATION = "androidx.navigation:navigation-compose:2.4.0-alpha01"
+        const val NAVIGATION_ANIMATIONS =
+            "com.google.accompanist:accompanist-navigation-animation:0.16.0"
+        const val HILT_NAVIGATION = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+
+        const val DataStore = "androidx.datastore:datastore-preferences:1.0.0"
+
         const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
 
         const val ROOM = "androidx.room:room-runtime:2.2.5"
@@ -37,8 +44,11 @@ object Project {
         const val HILT_VIEW_MODEL_LIFECYCLE =
             "androidx.hilt:hilt-lifecycle-viewmodel:$HILT_VIEW_MODELS"
         const val HILT_COMPILER = "androidx.hilt:hilt-compiler:$HILT_VIEW_MODELS"
-
         const val HILT_GRADLE = "com.google.dagger:hilt-android-gradle-plugin:2.36"
+        const val HILT_ANDROID_TEST = "com.google.dagger:hilt-android-testing:${HILT_VERSION}"
+
+        const val COIL = "io.coil-kt:coil-compose:1.3.1"
+
 
         object Tests {
             object UnitTests {
@@ -56,6 +66,11 @@ object Project {
                 const val UI_JUNIT = "androidx.compose.ui:ui-test-junit4:${Android.COMPOSE_VERSION}"
                 const val COMPOSE_UI_TOOLING =
                     "androidx.compose.ui:ui-tooling:${Android.COMPOSE_VERSION}"
+
+                // Needed for createComposeRule, but not createAndroidComposeRule:
+                const val COMPOSE_MANIFEST =
+                    "androidx.compose.ui:ui-test-manifest:${Android.COMPOSE_VERSION}"
+                const val RUNNER = "androidx.test:runner:1.3.0"
             }
         }
     }

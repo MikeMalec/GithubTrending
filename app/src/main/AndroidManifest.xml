@@ -2,14 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.githubtrending">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".screens.MainApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ghico"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ghico"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GithubTrending">
+        android:theme="@style/Theme.GithubTrending"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".screens.MainActivity"
             android:exported="true"

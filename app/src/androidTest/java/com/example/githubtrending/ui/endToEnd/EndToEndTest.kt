@@ -26,8 +26,10 @@ import com.example.githubtrending.data.network.repo.FakeRepoNetworkDataSource
 import com.example.githubtrending.data.preferences.FakeAppPreferences
 import com.example.githubtrending.screens.BottomBarScreen
 import com.example.githubtrending.screens.MainActivity
+import com.example.githubtrending.screens.Screen
 import com.example.githubtrending.screens.components.BottomBar
 import com.example.githubtrending.ui.theme.GithubTrendingTheme
+import com.example.githubtrending.utils.CurrentRoute
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -77,18 +79,14 @@ class EndToEndTest {
             GithubTrendingTheme {
                 val navController = rememberNavController()
                 Surface(color = MaterialTheme.colors.background) {
-                    var showBottomBar by remember {
-                        mutableStateOf(false)
-                    }
                     Scaffold(bottomBar = {
-                        if (showBottomBar) {
+                        val currentRoute = CurrentRoute(navController = navController)
+                        if (currentRoute != Screen.Repo.route && currentRoute != Screen.WelcomeScreen.route) {
                             BottomBar(navController = navController)
                         }
                     }) {
                         SetupTestNavGraph(
                             navController = navController,
-                            showBottomBar = { showBottomBar = true },
-                            hideBottomBar = { showBottomBar = false },
                             openUrl = {}
                         )
                     }

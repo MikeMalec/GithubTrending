@@ -13,13 +13,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.githubtrending.screens.BottomBarScreen
+import com.example.githubtrending.screens.Screen
 
 @Composable
 fun BottomBar(navController: NavController) {
     val screens = listOf(BottomBarScreen.SearchRepos, BottomBarScreen.SavedRepos)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-
     BottomNavigation(
         modifier = Modifier
             .height(60.dp)
@@ -27,24 +27,26 @@ fun BottomBar(navController: NavController) {
 
     ) {
         screens.forEach { screen ->
-            val isSelected = currentDestination!!.route == screen.route
-            BottomNavigationItem(
-                modifier = Modifier.testTag(screen.title),
-                label = { Text(text = screen.title) },
-                icon = {
-                    Icon(painter = painterResource(id = screen.icon), contentDescription = "")
-                },
-                selected = isSelected,
-                unselectedContentColor = LocalContentColor.current.copy(
-                    alpha = ContentAlpha
-                        .disabled
-                ),
-                onClick = {
-                    navController.navigate(screen.route) {
-                        popUpTo(navController.graph.startDestinationId)
-                        launchSingleTop = true
-                    }
-                })
+            currentDestination?.let {
+                val isSelected = currentDestination!!.route == screen.route
+                BottomNavigationItem(
+                    modifier = Modifier.testTag(screen.title),
+                    label = { Text(text = screen.title) },
+                    icon = {
+                        Icon(painter = painterResource(id = screen.icon), contentDescription = "")
+                    },
+                    selected = isSelected,
+                    unselectedContentColor = LocalContentColor.current.copy(
+                        alpha = ContentAlpha
+                            .disabled
+                    ),
+                    onClick = {
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    })
+            }
         }
     }
 }

@@ -21,10 +21,7 @@ import com.example.framework.utils.Constants
 import com.example.githubtrending.R
 
 @Composable
-fun WelcomeScreen(hideBottomBar: () -> Unit, navigationCallback: () -> Unit) {
-    LaunchedEffect(key1 = true) {
-        hideBottomBar()
-    }
+fun WelcomeScreen(navigationCallback: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         val infiniteTransition = rememberInfiniteTransition()
         val size by infiniteTransition.animateFloat(
@@ -72,8 +69,7 @@ fun WelcomeScreen(hideBottomBar: () -> Unit, navigationCallback: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp, 0.dp)
-                    .testTag(Constants.TestTags.WELCOME_BTN)
-                ,
+                    .testTag(Constants.TestTags.WELCOME_BTN),
                 shape = RoundedCornerShape(16.dp),
             ) {
                 Text(text = "Search Repos", fontSize = 20.sp, color = Color.White)

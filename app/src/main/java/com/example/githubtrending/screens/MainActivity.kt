@@ -19,6 +19,7 @@ import androidx.compose.animation.*
 import com.example.business.domain.Repo
 import com.example.githubtrending.screens.components.BottomBar
 import com.example.githubtrending.ui.theme.GithubTrendingTheme
+import com.example.githubtrending.utils.CurrentRoute
 
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,31 +30,20 @@ class MainActivity : ComponentActivity() {
         var repo: Repo? = null
     }
 
-    /**
-     * ui tests
-     * commit
-     * ci gh actions-> tests and build
-     * dark white mode
-     */
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             GithubTrendingTheme {
                 val navController = rememberAnimatedNavController()
                 Surface(color = MaterialTheme.colors.background) {
-                    var showBottomBar by remember {
-                        mutableStateOf(false)
-                    }
                     Scaffold(bottomBar = {
-                        if (showBottomBar) {
+                        val currentRoute = CurrentRoute(navController = navController)
+                        if (currentRoute != Screen.Repo.route && currentRoute != Screen.WelcomeScreen.route) {
                             BottomBar(navController = navController)
                         }
                     }) {
                         SetupNavGraph(
                             navController = navController,
-                            showBottomBar = { showBottomBar = true },
-                            hideBottomBar = { showBottomBar = false },
                             openUrl = ::openUrl
                         )
                     }

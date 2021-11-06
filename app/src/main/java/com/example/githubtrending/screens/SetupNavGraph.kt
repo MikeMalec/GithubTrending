@@ -20,26 +20,21 @@ import com.example.githubtrending.screens.welcome.WelcomeScreen
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    showBottomBar: () -> Unit,
-    hideBottomBar: () -> Unit,
     openUrl: (url: String) -> Unit
 ) {
     AnimatedNavHost(navController = navController, startDestination = Screen.WelcomeScreen.route) {
         composable(route = Screen.WelcomeScreen.route) {
-            hideBottomBar()
-            WelcomeScreen(hideBottomBar) {
+            WelcomeScreen {
                 navController.navigate(BottomBarScreen.SearchRepos.route)
             }
         }
         composable(route = BottomBarScreen.SearchRepos.route) {
-            showBottomBar()
             SearchReposScreen {
                 MainActivity.repo = it
                 navController.navigate(Screen.Repo.route)
             }
         }
         composable(route = BottomBarScreen.SavedRepos.route) {
-            showBottomBar()
             SavedRepos({
                 MainActivity.repo = it
                 navController.navigate(Screen.Repo.route)
@@ -57,9 +52,7 @@ fun SetupNavGraph(
                         (durationMillis = 600, easing = FastOutSlowInEasing)
                 ) + fadeOut(animationSpec = tween(600))
             }) {
-            hideBottomBar()
             RepoScreen(openUrl, {
-                showBottomBar()
                 navController.popBackStack()
             })
         }

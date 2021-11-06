@@ -23,17 +23,14 @@ class WelcomeScreenTest {
 
     @Test
     fun click_search_repos_confirm_navigated_forward() {
-        var hideBottomBar = false
         var navigationCallback = false
         composeTestRule.setContent {
             GithubTrendingTheme {
                 WelcomeScreen(
-                    hideBottomBar = { hideBottomBar = true },
                     navigationCallback = { navigationCallback = true })
             }
         }
         composeTestRule.onNodeWithText("Search Repos").performClick()
-        assert(hideBottomBar)
         assert(navigationCallback)
     }
 }

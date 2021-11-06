@@ -12,23 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.framework.utils.Constants
 import com.example.githubtrending.R
 
 @Composable
 fun GenericToolbar(
     title: String, showFilter: Boolean = false, showFilterCallback: (() -> Unit)? = null
 ) {
-//    Spacer(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(0.5.dp)
-//            .alpha(0.5f)
-//            .background(Color.White)
-//    )
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,6 +45,7 @@ fun GenericToolbar(
                     .clickable {
                         showFilterCallback?.invoke()
                     }
+                    .testTag(Constants.TestTags.SHOW_FILTERS)
             )
         }
     }

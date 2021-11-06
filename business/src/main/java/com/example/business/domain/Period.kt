@@ -7,9 +7,9 @@ sealed class Period(val value: String) {
     companion object {
         fun getByValue(value: String): Period {
             return when (value) {
-                "daily" -> Period.Daily
-                "weekly" -> Period.Weekly
-                else -> Period.Monthly
+                "daily" -> Daily
+                "weekly" -> Weekly
+                else -> Monthly
             }
         }
     }

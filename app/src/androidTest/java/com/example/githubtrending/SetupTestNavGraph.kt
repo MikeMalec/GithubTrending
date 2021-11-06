@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.githubtrending.screens.BottomBarScreen
+import com.example.githubtrending.screens.MainActivity
 import com.example.githubtrending.screens.Screen
 import com.example.githubtrending.screens.repo.RepoScreen
 import com.example.githubtrending.screens.savedrepos.SavedRepos
@@ -30,14 +31,14 @@ fun SetupTestNavGraph(
         composable(route = BottomBarScreen.SearchRepos.route) {
             showBottomBar()
             SearchReposScreen {
-//                MainActivity.repo = it
+                MainActivity.repo = it
                 navController.navigate(Screen.Repo.route)
             }
         }
         composable(route = BottomBarScreen.SavedRepos.route) {
             showBottomBar()
             SavedRepos({
-//                MainActivity.repo = it
+                MainActivity.repo = it
                 navController.navigate(Screen.Repo.route)
             })
         }

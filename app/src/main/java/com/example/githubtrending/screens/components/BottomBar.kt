@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -28,6 +29,7 @@ fun BottomBar(navController: NavController) {
         screens.forEach { screen ->
             val isSelected = currentDestination!!.route == screen.route
             BottomNavigationItem(
+                modifier = Modifier.testTag(screen.title),
                 label = { Text(text = screen.title) },
                 icon = {
                     Icon(painter = painterResource(id = screen.icon), contentDescription = "")

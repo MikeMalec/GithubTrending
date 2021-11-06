@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import com.example.framework.utils.Constants
 import com.example.githubtrending.R
 import com.example.githubtrending.screens.searchrepos.RepoStats
 import com.example.githubtrending.ui.theme.getLightBlue
@@ -70,7 +72,8 @@ fun RepoScreen(
                             onClick = { viewModel.setEvent(RepoScreenEvent.SaveRepo) },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(0.dp, 8.dp, 0.dp, 0.dp),
+                                .padding(0.dp, 8.dp, 0.dp, 0.dp)
+                                .testTag(Constants.TestTags.SAVE_BTN),
                             shape = RoundedCornerShape(16.dp),
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = getTeal(),
@@ -84,7 +87,8 @@ fun RepoScreen(
                             onClick = { viewModel.setEvent(RepoScreenEvent.DeleteRepo) },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(0.dp, 8.dp, 0.dp, 0.dp),
+                                .padding(0.dp, 8.dp, 0.dp, 0.dp)
+                                .testTag(Constants.TestTags.DELETE_BTN),
                             shape = RoundedCornerShape(16.dp),
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = getOrange(),
@@ -126,7 +130,8 @@ fun RepoToolbar(iconCallback: () -> Unit) {
         Icon(
             modifier = Modifier
                 .padding(16.dp, 8.dp, 8.dp, 8.dp)
-                .clickable { iconCallback() },
+                .clickable { iconCallback() }
+                .testTag(Constants.TestTags.BACK_BTN),
             painter = painterResource(id = R.drawable.ic_baseline_arrow_back_ios_24),
             contentDescription = "back_arrow",
             tint = Color.White

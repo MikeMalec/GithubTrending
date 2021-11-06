@@ -9,5 +9,12 @@ object Constants {
 
     object TestTags {
         const val WELCOME_BTN = "WELCOME_BTN"
+        const val SHOW_FILTERS = "SHOW_FILTERS"
+        const val SAVE_BTN = "SAVE_BTN"
+        const val DELETE_BTN = "DELETE_BTN"
+        const val BACK_BTN = "BACK_BTN"
+        const val ACCEPT_FILTER = "ACCEPT_FILTER"
+        const val REPO_DESC = "REPO_DESC"
+        const val PICK_LANGUAGE = "PICK_LANGUAGE"
     }
 }

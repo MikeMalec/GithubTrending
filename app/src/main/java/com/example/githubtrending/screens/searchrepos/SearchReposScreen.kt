@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,6 +24,7 @@ import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import com.example.business.domain.Period
 import com.example.business.domain.Repo
+import com.example.framework.utils.Constants
 import com.example.githubtrending.R
 import com.example.githubtrending.screens.components.GenericToolbar
 import com.example.githubtrending.screens.searchrepos.SearchReposScreenEvent.SearchRepos
@@ -81,7 +83,8 @@ fun RepoItem(repo: Repo, showRepo: (repo: Repo) -> Unit) {
             .padding(16.dp, 8.dp, 16.dp, 8.dp)
             .clickable {
                 showRepo(repo)
-            },
+            }
+            .testTag("LIST_INDEX_${repo.cacheId.toString()}"),
         elevation = 4.dp
     ) {
         Column(modifier = Modifier.padding(8.dp, 8.dp, 8.dp, 8.dp)) {
@@ -93,9 +96,12 @@ fun RepoItem(repo: Repo, showRepo: (repo: Repo) -> Unit) {
                     Image(
                         painter = rememberImagePainter(
                             data = repo.avatar,
-                            builder = { transformations(CircleCropTransformation()) }
+                            builder = {
+                                transformations(CircleCropTransformation())
+                                placeholder(R.drawable.ghico)
+                                error(R.drawable.ghico)
+                            },
                         ),
-
                         contentDescription = null,
                         modifier = Modifier
                             .size(60.dp)
@@ -108,7 +114,7 @@ fun RepoItem(repo: Repo, showRepo: (repo: Repo) -> Unit) {
             }
             Text(text = repo.name, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = repo.description)
+            Text(modifier = Modifier.testTag(Constants.TestTags.REPO_DESC), text = repo.description)
         }
         Spacer(
             modifier = Modifier
@@ -155,7 +161,9 @@ fun FilterDialog(
                                 .clickable {
                                     pickedLanguage = language
                                     showLanguages = false
-                                })
+                                }
+                                .testTag(language)
+                            )
                         }
                     }
                 } else {
@@ -193,7 +201,9 @@ fun FilterDialog(
                         .fillMaxWidth()
                         .clickable {
                             showLanguages = true
-                        })
+                        }
+                        .testTag(Constants.TestTags.PICK_LANGUAGE)
+                    )
                 }
             }
             if (!showLanguages) {
@@ -203,10 +213,13 @@ fun FilterDialog(
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        Button(onClick = {
-                            setFilters(period, pickedLanguage)
-                            closeDialog()
-                        }, shape = RoundedCornerShape(16.dp)) {
+                        Button(
+                            modifier = Modifier.testTag(Constants.TestTags.ACCEPT_FILTER),
+                            onClick = {
+                                setFilters(period, pickedLanguage)
+                                closeDialog()
+                            }, shape = RoundedCornerShape(16.dp)
+                        ) {
                             Text(text = "Accept")
                         }
                         Spacer(modifier = Modifier.width(8.dp))

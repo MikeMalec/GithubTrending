@@ -45,7 +45,7 @@ fun SearchReposScreen(
     }
     Surface(
         color = MaterialTheme.colors.background,
-        modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 65.dp)
+        modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 60.5.dp)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             GenericToolbar(title = "Trending Repos", showFilter = true) {

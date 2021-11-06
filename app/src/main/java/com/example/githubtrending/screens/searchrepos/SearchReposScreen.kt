@@ -174,7 +174,19 @@ fun FilterDialog(
                         }
                     }
                 } else {
-                    Text(text = "Pick a period", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = "Pick a period", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                        Image(
+                            modifier = Modifier
+                                .size(20.dp, 20.dp)
+                                .clickable { closeDialog() },
+                            painter = painterResource(id = R.drawable.ic_baseline_close_24),
+                            contentDescription = "close_filter_dialog"
+                        )
+                    }
                     Row(modifier = Modifier.padding(6.dp)) {
                         RadioButton(selected = period.value == "daily", onClick = {
                             period = Period.Daily
@@ -215,24 +227,16 @@ fun FilterDialog(
             }
             if (!showLanguages) {
                 Box(modifier = Modifier.padding(8.dp), contentAlignment = Alignment.BottomEnd) {
-                    Row(
+                    Button(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.End
+                            .fillMaxWidth()
+                            .testTag(Constants.TestTags.ACCEPT_FILTER),
+                        onClick = {
+                            setFilters(period, pickedLanguage)
+                            closeDialog()
+                        }, shape = RoundedCornerShape(16.dp)
                     ) {
-                        Button(
-                            modifier = Modifier.testTag(Constants.TestTags.ACCEPT_FILTER),
-                            onClick = {
-                                setFilters(period, pickedLanguage)
-                                closeDialog()
-                            }, shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Text(text = "Accept")
-                        }
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Button(onClick = { closeDialog() }, shape = RoundedCornerShape(16.dp)) {
-                            Text(text = "Cancel")
-                        }
+                        Text(text = "Set Filters")
                     }
                 }
             }

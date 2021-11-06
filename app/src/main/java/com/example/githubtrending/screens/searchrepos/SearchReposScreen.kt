@@ -27,6 +27,7 @@ import com.example.business.domain.Repo
 import com.example.framework.utils.Constants
 import com.example.githubtrending.R
 import com.example.githubtrending.screens.components.GenericToolbar
+import com.example.githubtrending.screens.components.NoContent
 import com.example.githubtrending.screens.searchrepos.SearchReposScreenEvent.SearchRepos
 import com.example.githubtrending.ui.theme.parse
 
@@ -51,11 +52,17 @@ fun SearchReposScreen(
                 showFilterDialog = true
             }
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
-                    itemsIndexed(state.repos) { _, repo ->
-                        RepoItem(repo = repo) {
-                            navigateToRepo(it)
+                state.repos?.let { repos ->
+                    if (repos.isNotEmpty()) {
+                        LazyColumn(modifier = Modifier.fillMaxSize()) {
+                            itemsIndexed(repos) { _, repo ->
+                                RepoItem(repo = repo) {
+                                    navigateToRepo(repo)
+                                }
+                            }
                         }
+                    } else {
+                        NoContent()
                     }
                 }
                 if (state.loading) {

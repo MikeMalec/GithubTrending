@@ -16,5 +16,6 @@ object Constants {
         const val ACCEPT_FILTER = "ACCEPT_FILTER"
         const val REPO_DESC = "REPO_DESC"
         const val PICK_LANGUAGE = "PICK_LANGUAGE"
+        const val NO_CONTENT = "NO_CONTENT"
     }
 }

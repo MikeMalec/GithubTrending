@@ -214,4 +214,42 @@ class EndToEndTest {
         composeTestRule.onAllNodesWithTag(Constants.TestTags.REPO_DESC)
             .assertAll(hasTestTag("monthly Project in c++"))
     }
+
+    @Test
+    fun open_app_navigate_to_search_repos_no_results_confirm_no_content_message_displayed() {
+        composeTestRule.onNodeWithTag(Constants.TestTags.WELCOME_BTN).performClick()
+        composeTestRule.onNodeWithTag(Constants.TestTags.NO_CONTENT).assertExists()
+    }
+
+    @Test
+    fun open_app_navigate_to_search_repos_get_results_confirm_no_content_message_not_displayed() {
+        fakeRepoNetworkDataSource.daily.addAll(
+            TestRepoFactory.createRepos(
+                1..5,
+                "kotlin",
+            )
+        )
+        composeTestRule.onNodeWithTag(Constants.TestTags.WELCOME_BTN).performClick()
+        composeTestRule.onNodeWithTag(Constants.TestTags.NO_CONTENT).assertDoesNotExist()
+    }
+
+    @Test
+    fun open_app_navigate_to_saved_repos_no_results_confirm_no_content_message_displayed() {
+        composeTestRule.onNodeWithTag(Constants.TestTags.WELCOME_BTN).performClick()
+        composeTestRule.onNodeWithTag(BottomBarScreen.SavedRepos.title).performClick()
+        composeTestRule.onNodeWithTag(Constants.TestTags.NO_CONTENT).assertExists()
+    }
+
+    @Test
+    fun open_app_navigate_to_saved_repos_get_results_confirm_no_content_message_not_displayed() {
+        fakeRepoCacheDataSource.repos.addAll(
+            TestRepoFactory.createRepos(
+                1..5,
+                "kotlin",
+            )
+        )
+        composeTestRule.onNodeWithTag(Constants.TestTags.WELCOME_BTN).performClick()
+        composeTestRule.onNodeWithTag(BottomBarScreen.SavedRepos.title).performClick()
+        composeTestRule.onNodeWithTag(Constants.TestTags.NO_CONTENT).assertExists()
+    }
 }

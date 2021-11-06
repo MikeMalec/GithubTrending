@@ -66,7 +66,7 @@ class SearchReposViewModelTest {
         searchReposViewModel.setEvent(SearchReposScreenEvent.SetFilters(Period.Daily, "kotlin"))
         searchReposViewModel.setEvent(SearchReposScreenEvent.SearchRepos)
         val state = searchReposViewModel.state.value
-        assertThat(state.repos.first().language).isEqualTo("kotlin")
+        assertThat(state.repos!!.first().language).isEqualTo("kotlin")
     }
 
     @Test
@@ -78,8 +78,8 @@ class SearchReposViewModelTest {
             searchReposViewModel.setEvent(SearchReposScreenEvent.SetFilters(Period.Weekly, "c++"))
             searchReposViewModel.setEvent(SearchReposScreenEvent.SearchRepos)
             val state = searchReposViewModel.state.value
-            assertThat(state.repos.size).isEqualTo(10)
-            assertThat(state.repos.first().language).isEqualTo("c++")
+            assertThat(state.repos!!.size).isEqualTo(10)
+            assertThat(state.repos!!.first().language).isEqualTo("c++")
             assertThat(fakePreferences.period).isEqualTo("weekly")
             assertThat(fakePreferences.language).isEqualTo("c++")
         }

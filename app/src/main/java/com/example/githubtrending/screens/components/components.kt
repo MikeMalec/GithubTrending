@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,5 +49,19 @@ fun GenericToolbar(
                     .testTag(Constants.TestTags.SHOW_FILTERS)
             )
         }
+    }
+}
+
+@Composable
+fun NoContent() {
+    Column(modifier = Modifier.testTag(Constants.TestTags.NO_CONTENT)) {
+        Image(
+            modifier = Modifier.size(100.dp, 100.dp), painter = painterResource(
+                id = R.drawable
+                    .ic_gh
+            ),
+            contentDescription = ""
+        )
+        Text(text = "Nothing found", fontWeight = FontWeight.Bold)
     }
 }

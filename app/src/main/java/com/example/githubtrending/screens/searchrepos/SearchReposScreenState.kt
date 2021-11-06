@@ -8,7 +8,7 @@ data class SearchReposScreenState(
     var period: Period = Period.Daily,
     var language: String = "",
     var languages: List<String> = listOf(""),
-    var repos: List<Repo> = listOf(),
+    var repos: List<Repo>? = null,
     var loading: Boolean = false,
     var error: String? = null
 ) : CloneableState<SearchReposScreenState> {

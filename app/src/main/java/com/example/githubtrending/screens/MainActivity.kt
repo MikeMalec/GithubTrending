@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     Scaffold(bottomBar = {
                         val currentRoute = CurrentRoute(navController = navController)
-                        if (currentRoute != Screen.Repo.route && currentRoute != Screen.WelcomeScreen.route) {
+                        if (currentRoute != Screen.Repo.route && currentRoute != Screen.WelcomeScreen.route && currentRoute != null) {
                             BottomBar(navController = navController)
                         }
                     }) {

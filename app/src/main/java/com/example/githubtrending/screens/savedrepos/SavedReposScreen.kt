@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.business.domain.Repo
 import com.example.githubtrending.screens.components.GenericToolbar
+import com.example.githubtrending.screens.components.NoContent
 import com.example.githubtrending.screens.searchrepos.RepoItem
 
 @Composable
@@ -27,6 +28,9 @@ fun SavedRepos(showRepo: (repo: Repo) -> Unit, viewModel: SavedReposViewModel = 
                     itemsIndexed(repos.value) { _, repo ->
                         RepoItem(repo = repo, showRepo = showRepo)
                     }
+                }
+                if (repos.value.isEmpty()) {
+                    NoContent()
                 }
             }
         }

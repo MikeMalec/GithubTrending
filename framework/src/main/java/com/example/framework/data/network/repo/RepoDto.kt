@@ -1,6 +1,6 @@
 package com.example.framework.data.network.repo
 
-data class RepoDao(
+data class RepoDto(
     val author: String,
     val name:String,
     val langColor: String,

@@ -250,6 +250,6 @@ class EndToEndTest {
         )
         composeTestRule.onNodeWithTag(Constants.TestTags.WELCOME_BTN).performClick()
         composeTestRule.onNodeWithTag(BottomBarScreen.SavedRepos.title).performClick()
-        composeTestRule.onNodeWithTag(Constants.TestTags.NO_CONTENT).assertExists()
+        composeTestRule.onNodeWithTag(Constants.TestTags.NO_CONTENT).assertDoesNotExist()
     }
 }

@@ -5,6 +5,7 @@ import com.example.githubtrending.R
 sealed class Screen(val route: String) {
     object WelcomeScreen : Screen(route = "welcome_screen")
     object Repo : Screen(route = "repo")
+    object WebScreen : Screen(route = "web/{url}/{title}")
 }
 
 sealed class BottomBarScreen(val route: String, val title: String, val icon: Int) {

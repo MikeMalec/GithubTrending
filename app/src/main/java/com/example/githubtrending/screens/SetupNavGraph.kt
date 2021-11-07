@@ -10,17 +10,22 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.navArgument
+import com.example.framework.utils.Constants
 
 import com.example.githubtrending.screens.repo.RepoScreen
 import com.example.githubtrending.screens.savedrepos.SavedRepos
 import com.example.githubtrending.screens.searchrepos.SearchReposScreen
+import com.example.githubtrending.screens.webscreen.WebScreen
 import com.example.githubtrending.screens.welcome.WelcomeScreen
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    openUrl: (url: String) -> Unit
 ) {
     AnimatedNavHost(navController = navController, startDestination = Screen.WelcomeScreen.route) {
         composable(route = Screen.WelcomeScreen.route) {
@@ -52,9 +57,27 @@ fun SetupNavGraph(
                         (durationMillis = 600, easing = FastOutSlowInEasing)
                 ) + fadeOut(animationSpec = tween(600))
             }) {
-            RepoScreen(openUrl, {
+            RepoScreen({
+                val url = URLEncoder.encode(it.url, StandardCharsets.UTF_8.toString())
+                val title = it.name
+                navController.navigate("web/$url/$title")
+            }, {
                 navController.popBackStack()
             })
+        }
+        composable(route = Screen.WebScreen.route, arguments = listOf(
+            navArgument("url") {
+                type = NavType.StringType
+            },
+            navArgument("title") {
+                type = NavType.StringType
+            }
+        )) {
+            val url = it.arguments!!.getString("url")!!
+            val title = it.arguments!!.getString("title")!!
+            WebScreen(title = title, url = url) {
+                navController.popBackStack()
+            }
         }
     }
 }

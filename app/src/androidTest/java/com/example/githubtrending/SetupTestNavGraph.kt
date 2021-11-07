@@ -17,7 +17,6 @@ import com.example.githubtrending.screens.welcome.WelcomeScreen
 @Composable
 fun SetupTestNavGraph(
     navController: NavHostController,
-    openUrl: (url: String) -> Unit
 ) {
     NavHost(navController = navController, startDestination = Screen.WelcomeScreen.route) {
         composable(route = Screen.WelcomeScreen.route) {
@@ -38,7 +37,7 @@ fun SetupTestNavGraph(
             })
         }
         composable(route = Screen.Repo.route) {
-            RepoScreen(openUrl, {
+            RepoScreen({}, {
                 navController.popBackStack()
             })
         }

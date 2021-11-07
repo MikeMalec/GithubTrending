@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import com.example.business.domain.Repo
 import com.example.framework.utils.Constants
 import com.example.githubtrending.R
 import com.example.githubtrending.screens.searchrepos.RepoStats
@@ -30,7 +31,7 @@ import com.example.githubtrending.ui.theme.getTeal
 
 @Composable
 fun RepoScreen(
-    openUrl: (url: String) -> Unit,
+    openUrl: (repo: Repo) -> Unit,
     popBackStack: () -> Unit,
     viewModel: RepoViewModel = hiltViewModel()
 ) {
@@ -100,7 +101,7 @@ fun RepoScreen(
                     }
                     Button(
                         onClick = {
-                            openUrl(state.repo!!.url)
+                            openUrl(state.repo!!)
                         }, modifier = Modifier
                             .fillMaxWidth()
                             .padding(0.dp, 8.dp, 0.dp, 0.dp),

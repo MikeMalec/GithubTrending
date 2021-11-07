@@ -81,10 +81,7 @@ class EndToEndTest {
                             BottomBar(navController = navController)
                         }
                     }) {
-                        SetupTestNavGraph(
-                            navController = navController,
-                            openUrl = {}
-                        )
+                        SetupTestNavGraph(navController = navController)
                     }
                 }
             }

@@ -1,21 +1,13 @@
 package com.example.githubtrending.screens
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.*
-
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import androidx.compose.animation.*
-
 import com.example.business.domain.Repo
 import com.example.githubtrending.screens.components.BottomBar
 import com.example.githubtrending.ui.theme.GithubTrendingTheme
@@ -38,25 +30,16 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     Scaffold(bottomBar = {
                         val currentRoute = CurrentRoute(navController = navController)
-                        if (currentRoute != Screen.Repo.route && currentRoute != Screen.WelcomeScreen.route && currentRoute != null) {
+                        if (currentRoute == BottomBarScreen.SavedRepos.route || currentRoute ==
+                            BottomBarScreen.SearchRepos.route
+                        ) {
                             BottomBar(navController = navController)
                         }
                     }) {
-                        SetupNavGraph(
-                            navController = navController,
-                            openUrl = ::openUrl
-                        )
+                        SetupNavGraph(navController = navController)
                     }
                 }
             }
-        }
-    }
-
-    private fun openUrl(url: String) {
-        Intent().apply {
-            action = Intent.ACTION_VIEW
-            data = Uri.parse(url)
-            startActivity(this)
         }
     }
 }
